@@ -1,8 +1,8 @@
 "use client";
 
+import { Category, Product } from "@/types";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { Category, Product } from "../types";
 
 interface SuccessViewProps {
   selections: Record<Category, Product | null>;

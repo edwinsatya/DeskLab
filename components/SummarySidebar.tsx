@@ -1,7 +1,7 @@
 "use client";
 
+import { Category, Product } from "@/types";
 import { Check, ChevronRight, CreditCard, ShoppingCart } from "lucide-react";
-import { Category, Product } from "../types";
 
 interface SummarySidebarProps {
   selections: Record<Category, Product | null>;
@@ -59,7 +59,7 @@ export const SummarySidebar = ({ selections, totalPrice, onRent }: SummarySideba
           <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-teal-500/10 flex items-center justify-center">
             <CreditCard className="text-teal-500" size={18} />
           </div>
-          <h3 className="font-bold text-sm lg:text-base text-zinc-200">Nomad Insurance</h3>
+          <h3 className="font-bold text-sm lg:text-base text-zinc-200">Shiny Insurance</h3>
         </div>
         <p className="text-[11px] lg:text-xs text-zinc-400 leading-relaxed font-medium">
           Every setup comes with full coverage against coffee spills and Canggu power surges.

@@ -1,8 +1,8 @@
 "use client";
 
+import { Category, Product } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { Armchair, Table } from "lucide-react";
-import { Category, Product } from "../types";
 
 interface VisualizerProps {
   selections: Record<Category, Product | null>;

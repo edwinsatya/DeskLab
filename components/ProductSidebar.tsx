@@ -1,10 +1,10 @@
 "use client";
 
 import { PRODUCTS } from "@/constants";
+import { Category, Product } from "@/types";
 import { motion } from "framer-motion";
 import { Check, Plus } from "lucide-react";
 import Image from "next/image";
-import { Category, Product } from "../types";
 
 interface ProductSidebarProps {
   activeTab: Category;
