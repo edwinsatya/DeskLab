@@ -1,19 +1,14 @@
 "use client";
 
+import { DELIVERY_STEPS } from "@/constants";
 import { motion } from "framer-motion";
-import { Box, CheckCircle2, MapPin, Truck } from "lucide-react";
 
 interface DeliveryStatusProps {
   onReset: () => void;
 }
 
 export const DeliveryStatus = ({ onReset }: DeliveryStatusProps) => {
-  const steps = [
-    { title: "Order Confirmed", desc: "Your setup is reserved", status: "completed", icon: CheckCircle2 },
-    { title: "Quality Check", desc: "Testing every hinge and cable", status: "current", icon: Box },
-    { title: "Out for Delivery", desc: "Navigating Canggu traffic", status: "pending", icon: Truck },
-    { title: "Delivered", desc: "Enjoy your Bali oasis!", status: "pending", icon: MapPin },
-  ];
+  const steps = DELIVERY_STEPS
 
   return (
     <div className="min-h-screen bg-[#0F0F10] text-white flex items-center justify-center p-4 lg:p-8">

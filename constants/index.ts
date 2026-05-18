@@ -1,4 +1,5 @@
 import { Product } from "@/types";
+import { Box, CheckCircle2, MapPin, Truck } from "lucide-react";
 
 export const PRODUCTS: Product[] = [
   { 
@@ -129,4 +130,42 @@ export const PRODUCTS: Product[] = [
     category: "accessory",
     variant: "mat"
   },
+];
+
+export const REVIEWS = [
+  {
+    name: "Sarah Jenkins",
+    role: "Freelance Designer",
+    location: "Canggu",
+    content: "DeskLab changed my life in Bali. I used to work from my kitchen table, but now I have a professional studio setup that was delivered in hours.",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
+  },
+  {
+    name: "Lighthouse Tech",
+    role: "Software Startup",
+    location: "Ubud",
+    content: "Setting up our first office in Bali was a breeze. We rented 10 complete workstations and everything was installed perfectly before we arrived.",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop"
+  },
+  {
+    name: "Marco Rossi",
+    role: "Digital Nomad",
+    location: "Uluwatu",
+    content: "The quality of the standing desks is incredible. It's the only way to stay productive while enjoying the island life. Highly recommended!",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+  }
+];
+
+export const DELIVERY_STEPS = [
+  { title: "Order Confirmed", desc: "Your setup is reserved", status: "completed", icon: CheckCircle2 },
+  { title: "Quality Check", desc: "Testing every hinge and cable", status: "current", icon: Box },
+  { title: "Out for Delivery", desc: "Navigating Canggu traffic", status: "pending", icon: Truck },
+  { title: "Delivered", desc: "Enjoy your Bali oasis!", status: "pending", icon: MapPin },
+];
+
+export const PAYMENT_STEPS = [
+  "Connecting to secure gateway...",
+  "Validating digital workspace credentials...",
+  "Processing payment...",
+  "Finalizing order..."
 ];

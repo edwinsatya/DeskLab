@@ -1,5 +1,6 @@
 "use client";
 
+import { PAYMENT_STEPS } from "@/constants";
 import { motion } from "framer-motion";
 import { CreditCard, ShieldCheck } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -11,12 +12,7 @@ interface PaymentProcessingProps {
 export const PaymentProcessing = ({ onSuccess }: PaymentProcessingProps) => {
   const [step, setStep] = useState(0);
 
-  const steps = [
-    "Connecting to secure gateway...",
-    "Validating digital workspace credentials...",
-    "Processing payment...",
-    "Finalizing order..."
-  ];
+  const steps = PAYMENT_STEPS;
 
   useEffect(() => {
     const timer = setInterval(() => {
