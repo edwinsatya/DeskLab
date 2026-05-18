@@ -45,17 +45,19 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 mt-4"
+          className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto"
         >
-          <Link href="/builder">
-            <button className="cursor-pointer px-8 py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-xl shadow-teal-500/20">
+          <Link href="/builder" className="w-full sm:w-56">
+            <button className="cursor-pointer w-full px-8 py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-xl shadow-teal-500/20">
               Start Designing
               <ChevronRight size={20} />
             </button>
           </Link>
-          <button className="px-8 py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-extrabold rounded-2xl border border-white/5 transition-all">
-            How it works
-          </button>
+          <Link href="/how-it-works" className="w-full sm:w-56">
+            <button className="cursor-pointer w-full px-8 py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-extrabold rounded-2xl border border-white/5 transition-all">
+              How it works
+            </button>
+          </Link>
         </motion.div>
 
         {/* Mockup Preview / Visual hint */}

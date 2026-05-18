@@ -9,7 +9,8 @@ export const Navbar = () => {
         <div className="w-7 h-7 lg:w-8 lg:h-8 bg-teal-500 rounded-lg flex items-center justify-center font-bold text-black italic text-sm lg:text-base group-hover:scale-110 transition-transform">D</div>
         <span className="text-lg lg:text-xl font-bold tracking-tight">Desk<span className="text-teal-500">Lab</span></span>
       </Link>
-      <div className="flex items-center gap-4 lg:gap-6">
+      <div className="flex items-center gap-4 lg:gap-8">
+        <Link href="/how-it-works" className="hidden sm:block text-xs lg:text-sm font-medium text-zinc-400 hover:text-white transition-colors">How it works</Link>
         <Link href="/builder" className="hidden sm:block text-xs lg:text-sm font-medium text-zinc-400 hover:text-white transition-colors">Builder</Link>
         <button className="px-4 py-2 lg:px-5 lg:py-2.5 bg-white text-black text-[10px] lg:text-sm font-bold rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300 uppercase lg:normal-case tracking-wider lg:tracking-normal">
           Sign In
