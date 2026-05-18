@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "DeskLab | Design Your Workspace",
-  description: "Interactive workspace designer for digital nomads and startups.",
+  description: "Interactive workspace designer for digital workspace designers and startups.",
 };
 
 export default function RootLayout({
