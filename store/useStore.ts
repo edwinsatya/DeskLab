@@ -11,6 +11,7 @@ interface WorkspaceState {
   toggleProduct: (product: Product) => void;
   setActiveTab: (tab: Category) => void;
   setIsRented: (isRented: boolean) => void;
+  resetStore: () => void;
   getTotalPrice: () => number;
 }
 
@@ -36,6 +37,17 @@ export const useStore = create<WorkspaceState>((set, get) => ({
   setActiveTab: (tab) => set({ activeTab: tab }),
   
   setIsRented: (isRented) => set({ isRented }),
+
+  resetStore: () => set({
+    selections: {
+      desk: PRODUCTS[0],
+      chair: PRODUCTS[4],
+      monitor: null,
+      accessory: null,
+    },
+    activeTab: "desk",
+    isRented: false,
+  }),
 
   getTotalPrice: () => {
     const { selections } = get();

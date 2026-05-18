@@ -23,7 +23,7 @@ export const ProductSidebar = () => {
           <button
             key={cat}
             onClick={() => setActiveTab(cat)}
-            className={`flex-1 min-w-20 py-2 rounded-lg text-[10px] font-extrabold uppercase tracking-widest transition-all ${
+            className={`cursor-pointer flex-1 min-w-20 py-2 rounded-lg text-[10px] font-extrabold uppercase tracking-widest transition-all ${
               activeTab === cat ? "bg-zinc-800 text-teal-500 shadow-lg shadow-black/20" : "text-zinc-500 hover:text-zinc-300"
             }`}
           >
