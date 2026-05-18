@@ -48,7 +48,7 @@ export default function LandingPage() {
           className="flex flex-col sm:flex-row gap-4 mt-4"
         >
           <Link href="/builder">
-            <button className="px-8 py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-xl shadow-teal-500/20">
+            <button className="cursor-pointer px-8 py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-xl shadow-teal-500/20">
               Start Designing
               <ChevronRight size={20} />
             </button>

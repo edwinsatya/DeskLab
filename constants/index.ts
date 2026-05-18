@@ -37,7 +37,7 @@ export const PRODUCTS: Product[] = [
     id: "chair-1", 
     name: "ErgoCloud", 
     price: 30, 
-    image: "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800",
     category: "chair",
     color: "#4A4A4A"
   },

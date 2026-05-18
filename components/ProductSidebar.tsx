@@ -41,7 +41,6 @@ export const ProductSidebar = () => {
               layout
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.02 }}
               onClick={() => toggleProduct(product)}
               className={`group relative overflow-hidden rounded-2xl border transition-all cursor-pointer ${
                 selections[product.category]?.id === product.id 

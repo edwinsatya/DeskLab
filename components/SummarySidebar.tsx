@@ -38,8 +38,8 @@ export const SummarySidebar = () => {
         </div>
 
         <button 
-          onClick={() => setIsRented(true)}
-          className="w-full py-3.5 lg:py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] group shadow-lg shadow-teal-500/10 text-sm lg:text-base"
+          onClick={() => totalPrice && setIsRented(true)}
+          className={`w-full py-3.5 lg:py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] group shadow-lg shadow-teal-500/10 text-sm lg:text-base ${!totalPrice ? "cursor-not-allowed disabled:opacity-30 bg-teal-800 hover:bg-teal-900" : "cursor-pointer"}  `}
         >
           Rent Setup Now
           <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />

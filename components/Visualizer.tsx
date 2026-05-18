@@ -2,13 +2,13 @@
 
 import { useStore } from "@/store/useStore";
 import { AnimatePresence, motion } from "framer-motion";
-import { Armchair, Table } from "lucide-react";
+import { Accessibility, Armchair, Monitor, Table } from "lucide-react";
 
 export const Visualizer = () => {
   const { selections } = useStore();
 
   return (
-    <div className="flex-1 relative bg-[#0a0a0b] rounded-[40px] border border-white/5 overflow-hidden group min-h-125 lg:min-h-0 perspective-distant transform-3d">
+    <div className="hidden md:flex flex-1 relative bg-[#0a0a0b] rounded-[40px] border border-white/5 overflow-hidden group min-h-125 lg:min-h-0 perspective-distant transform-3d">
       {/* Background Scene - Room Mockup */}
       <div className="absolute inset-0 bg-linear-to-b from-zinc-800/10 to-black/60" />
       {/* Floor Grid with Perspective */}
@@ -172,10 +172,13 @@ export const Visualizer = () => {
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 px-6 py-3 bg-black/60 backdrop-blur-xl rounded-full border border-white/10 text-sm text-zinc-300 shadow-2xl z-50">
-        <div className="w-px h-4 bg-white/20" />
         <span className="flex items-center gap-1.5 whitespace-nowrap"><Table size={14}/> {selections.desk?.name || "No desk"}</span>
         <div className="w-px h-4 bg-white/10" />
         <span className="flex items-center gap-1.5 whitespace-nowrap"><Armchair size={14}/> {selections.chair?.name || "No chair"}</span>
+        <div className="w-px h-4 bg-white/10" />
+        <span className="flex items-center gap-1.5 whitespace-nowrap"><Monitor size={14}/> {selections.monitor?.name || "No monitor"}</span>
+        <div className="w-px h-4 bg-white/10" />
+        <span className="flex items-center gap-1.5 whitespace-nowrap"><Accessibility size={14}/> {selections.accessory?.name || "No accessory"}</span>
       </div>
     </div>
   );
