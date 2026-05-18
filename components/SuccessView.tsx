@@ -3,10 +3,22 @@
 import { useStore } from "@/store/useStore";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import { useState } from "react";
+import { DeliveryStatus } from "./DeliveryStatus";
+import { PaymentProcessing } from "./PaymentProcessing";
 
 export const SuccessView = () => {
   const { selections, getTotalPrice, setIsRented, resetStore } = useStore();
   const totalPrice = getTotalPrice();
+  const [view, setView] = useState<"summary" | "payment" | "delivery">("summary");
+
+  if (view === "payment") {
+    return <PaymentProcessing onSuccess={() => setView("delivery")} />;
+  }
+
+  if (view === "delivery") {
+    return <DeliveryStatus onReset={resetStore} />;
+  }
 
   return (
     <div className="min-h-screen bg-[#0F0F10] text-white flex items-center justify-center p-4 lg:p-8">
@@ -38,17 +50,17 @@ export const SuccessView = () => {
 
         <div className="flex flex-col gap-3">
           <button 
-            onClick={resetStore}
-            className="cursor-pointer w-full py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl transition-all active:scale-[0.98] shadow-lg shadow-teal-500/10 text-sm lg:text-base capitalize tracking-wider"
+            onClick={() => setView("payment")}
+            className="w-full py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl transition-all active:scale-[0.98] shadow-lg shadow-teal-500/10 text-sm lg:text-base capitalize tracking-wider cursor-pointer"
           >
-            Confirm & Start New Setup
+            Confirm & Pay Setup
           </button>
           
           <button 
             onClick={() => setIsRented(false)}
-            className="cursor-pointer text-zinc-500 hover:text-white transition-colors text-xs lg:text-sm font-medium"
+            className="text-zinc-500 hover:text-white transition-colors text-xs lg:text-sm font-medium cursor-pointer"
           >
-            Go back to editor
+            Back to Editor
           </button>
         </div>
       </motion.div>
