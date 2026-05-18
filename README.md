@@ -9,7 +9,13 @@ The project was designed with a **"Visual First"** approach. Instead of traditio
 - **Frontend**: Built with **Next.js 16 (App Router)** for a fast, interactive user interface. Tailwind CSS for modern styling.
 - **State Management**: Migrated from prop-drilling to **Zustand** to ensure a single source of truth for complex product selections and UI states.
 - **Visuals**: Leveraged **CSS 3D Transforms** (`perspective`, `rotateX/Y`) instead of heavy WebGL/Three.js to maintain lightning-fast load times while still providing a depth-filled, interactive mockup.
-- **Intelligence**: Integrated **OpenRouter (AI)** to act as a workspace consultant, helping customer choose products based on ergonomics and Bali lifestyle needs.
+- **AI-Powered Consultation**: A unique **"Chat with AI"** feature powered by OpenRouter that acts as a personal workspace consultant, providing real-time product recommendations from the DeskLab catalog based on ergonomic needs and Bali lifestyle.
+
+## ✨ Key Features
+
+- **Interactive 3D Visualizer**: Real-time CSS 3D preview of your workspace as you swap products (desktop version).
+- **Smart AI Assistant**: Floating chat interface that understands our product catalog and provides expert advice.
+- **Dummy Checkout Flow**: Interactive payment processing and live delivery status tracking for a complete end-to-end experience (UI only).
 
 ## 🛠️ Tech Choices
 
@@ -24,8 +30,11 @@ The project was designed with a **"Visual First"** approach. Instead of traditio
 
 Given more time, the following features would be prioritized:
 
-1. **Login/Registration**: Implement user authentication to save user login sessions.
-2. **Persisted Sessions**: Allow users to save their setups to a database and share a unique URL with their team. Or if just for client only we can using localStorage.
+1. **Login/Registration**: Implement user authentication to save user login sessions. Or if just for client-side only we can using localStorage.
+2. **Integration with Database**: Allow users to save their setups to a database and share a unique URL with their team.
+3. **Payment Processing**: Integrate a secure gateway to handle payments for digital workspace rentals.
+4. **Dark Mode**: Add a dark mode toggle for a more comfortable experience in low-light environments.
+5. **Adjustment Styling**: Improve the UI make more beautiful.
 ---
 
 Built with 🌴 for the Bali Workspace Design Community.
