@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏝️ DeskLab: Bali Workspace Visualizer
 
-## Getting Started
+**DeskLab** is an interactive 3D workspace designer built for digital workspace design in Bali. It moves away from boring product catalogs, offering a fun, visual experience where users can build their dream office setup—picking desks, chairs, monitors, and accessories—and see it come to life in a CSS-powered 3D mockup before renting.
 
-First, run the development server:
+## 🚀 Approach & Philosophy
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The project was designed with a **"Visual First"** approach. Instead of traditional e-commerce lists, we focused on a high-fidelity "Dark Studio" aesthetic that mirrors the premium experience of a designer tool. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Frontend**: Built with **Next.js 16 (App Router)** for a fast, interactive user interface. Tailwind CSS for modern styling.
+- **State Management**: Migrated from prop-drilling to **Zustand** to ensure a single source of truth for complex product selections and UI states.
+- **Visuals**: Leveraged **CSS 3D Transforms** (`perspective`, `rotateX/Y`) instead of heavy WebGL/Three.js to maintain lightning-fast load times while still providing a depth-filled, interactive mockup.
+- **Intelligence**: Integrated **OpenRouter (AI)** to act as a workspace consultant, helping customer choose products based on ergonomics and Bali lifestyle needs.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Choices
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 16 (App Router)**: For cutting-edge routing, image optimization, and server-side capabilities.
+- **Tailwind CSS 4**: Modern styling with a utility-first approach for the "Dark Studio" UI.
+- **Framer Motion**: Powering smooth, physics-based animations and layout transitions.
+- **Zustand**: Lightweight, scalable state management for product selections.
+- **Lucide React**: Consistent, high-quality iconography.
+- **OpenRouter (AI)**: Powering the "DeskLab AI" assistant with `nvidia/nemotron-3-super-120b-a12b`.
 
-## Learn More
+## 📈 Future Improvements
 
-To learn more about Next.js, take a look at the following resources:
+Given more time, the following features would be prioritized:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Login/Registration**: Implement user authentication to save user login sessions.
+2. **Persisted Sessions**: Allow users to save their setups to a database and share a unique URL with their team. Or if just for client only we can using localStorage.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with 🌴 for the Bali Workspace Design Community.
