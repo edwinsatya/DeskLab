@@ -106,7 +106,7 @@ export default function LandingPage() {
               <Shield size={24} />
             </div>
             <h3 className="text-xl font-bold">Full Insurance</h3>
-            <p className="text-zinc-500 text-sm leading-relaxed">Coffee spills or power surges—we&apos;ve got you covered with Auto insurance.</p>
+            <p className="text-zinc-500 text-sm leading-relaxed">Coffee spills or power surges—we&apos;ve got you covered with Shiny insurance.</p>
           </div>
         </div>
       </main>

@@ -1,14 +1,12 @@
 "use client";
 
-import { Category, Product } from "@/types";
+import { useStore } from "@/store/useStore";
 import { AnimatePresence, motion } from "framer-motion";
 import { Armchair, Table } from "lucide-react";
 
-interface VisualizerProps {
-  selections: Record<Category, Product | null>;
-}
+export const Visualizer = () => {
+  const { selections } = useStore();
 
-export const Visualizer = ({ selections }: VisualizerProps) => {
   return (
     <div className="flex-1 relative bg-[#0a0a0b] rounded-[40px] border border-white/5 overflow-hidden group min-h-125 lg:min-h-0 perspective-distant transform-3d">
       {/* Background Scene - Room Mockup */}

@@ -1,19 +1,15 @@
 "use client";
 
 import { PRODUCTS } from "@/constants";
-import { Category, Product } from "@/types";
+import { useStore } from "@/store/useStore";
+import { Category } from "@/types";
 import { motion } from "framer-motion";
 import { Check, Plus } from "lucide-react";
 import Image from "next/image";
 
-interface ProductSidebarProps {
-  activeTab: Category;
-  setActiveTab: (cat: Category) => void;
-  selections: Record<Category, Product | null>;
-  toggleProduct: (product: Product) => void;
-}
+export const ProductSidebar = () => {
+  const { activeTab, setActiveTab, selections, toggleProduct } = useStore();
 
-export const ProductSidebar = ({ activeTab, setActiveTab, selections, toggleProduct }: ProductSidebarProps) => {
   return (
     <div className="w-full lg:w-96 flex flex-col gap-4 lg:gap-6 shrink-0">
       <div className="flex flex-col gap-1 lg:gap-2">

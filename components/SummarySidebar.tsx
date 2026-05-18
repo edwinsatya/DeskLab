@@ -1,15 +1,12 @@
 "use client";
 
-import { Category, Product } from "@/types";
+import { useStore } from "@/store/useStore";
 import { Check, ChevronRight, CreditCard, ShoppingCart } from "lucide-react";
 
-interface SummarySidebarProps {
-  selections: Record<Category, Product | null>;
-  totalPrice: number;
-  onRent: () => void;
-}
+export const SummarySidebar = () => {
+  const { selections, getTotalPrice, setIsRented } = useStore();
+  const totalPrice = getTotalPrice();
 
-export const SummarySidebar = ({ selections, totalPrice, onRent }: SummarySidebarProps) => {
   return (
     <div className="w-full lg:w-80 flex flex-col gap-4 lg:gap-6">
       <div className="bg-zinc-900/50 rounded-3xl border border-white/5 p-4 lg:p-6 flex flex-col gap-4 lg:gap-6 shadow-xl shadow-black/20">
@@ -41,7 +38,7 @@ export const SummarySidebar = ({ selections, totalPrice, onRent }: SummarySideba
         </div>
 
         <button 
-          onClick={onRent}
+          onClick={() => setIsRented(true)}
           className="w-full py-3.5 lg:py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] group shadow-lg shadow-teal-500/10 text-sm lg:text-base"
         >
           Rent Setup Now

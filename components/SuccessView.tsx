@@ -1,16 +1,13 @@
 "use client";
 
-import { Category, Product } from "@/types";
+import { useStore } from "@/store/useStore";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
-interface SuccessViewProps {
-  selections: Record<Category, Product | null>;
-  totalPrice: number;
-  onBack: () => void;
-}
+export const SuccessView = () => {
+  const { selections, getTotalPrice, setIsRented } = useStore();
+  const totalPrice = getTotalPrice();
 
-export const SuccessView = ({ selections, totalPrice, onBack }: SuccessViewProps) => {
   return (
     <div className="min-h-screen bg-[#0F0F10] text-white flex items-center justify-center p-4 lg:p-8">
       <motion.div 
@@ -38,7 +35,7 @@ export const SuccessView = ({ selections, totalPrice, onBack }: SuccessViewProps
           </div>
         </div>
         <button 
-          onClick={onBack}
+          onClick={() => setIsRented(false)}
           className="mt-2 text-zinc-500 hover:text-white transition-colors text-xs lg:text-sm font-medium"
         >
           Go back to editor
