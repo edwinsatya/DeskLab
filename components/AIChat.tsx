@@ -70,7 +70,7 @@ export const AIChat = () => {
             <div className="p-4 bg-teal-500 flex items-center justify-between">
               <div className="flex items-center gap-2 text-black">
                 <Bot size={20} strokeWidth={2.5} />
-                <span className="font-extrabold uppercase tracking-tight text-sm">DeskLab AI</span>
+                <span className="font-extrabold capitalize tracking-tight text-sm">DeskLab Bot</span>
               </div>
               <button onClick={() => setIsOpen(false)} className="cursor-pointer text-black/60 hover:text-black transition-colors">
                 <X size={20} />
@@ -119,10 +119,11 @@ export const AIChat = () => {
                 <input
                   type="text"
                   value={input}
+                  disabled={isLoading}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                  placeholder="Type a message..."
-                  className="w-full bg-zinc-800 border border-white/5 rounded-xl py-3 pl-4 pr-12 text-sm focus:outline-hidden focus:border-teal-500/50 text-white transition-colors"
+                  placeholder={isLoading ? "Thinking..." : "Type a message..."}
+                  className="w-full bg-zinc-800 border border-white/5 rounded-xl py-3 pl-4 pr-12 text-sm focus:outline-hidden focus:border-teal-500/50 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 />
                 <button
                   onClick={handleSend}
