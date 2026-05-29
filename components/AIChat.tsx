@@ -85,7 +85,7 @@ export const AIChat = () => {
               {messages.length === 0 && (
                 <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 opacity-40 py-10">
                   <Bot size={40} />
-                  <p className="text-xs font-bold uppercase tracking-widest">Ask me anything about your Bali setup!</p>
+                  <p className="text-xs font-bold uppercase tracking-widest text-white">Ask me anything about your Bali setup!</p>
                 </div>
               )}
               {messages.map((msg, i) => (
