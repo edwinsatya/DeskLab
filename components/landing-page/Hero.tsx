@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronRight, Sparkles } from "lucide-react";
+import { Check, ChevronRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 export const Hero = () => {
   return (
-    <div className="flex flex-col items-center text-center gap-8">
+    <div className="flex flex-col items-center text-center gap-7">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -42,18 +42,33 @@ export const Hero = () => {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto"
       >
-        <Link href="/builder" className="w-full sm:w-56">
-          <button className="cursor-pointer w-full px-8 py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-xl shadow-teal-500/20">
-            Start Designing
-            <ChevronRight size={20} />
-          </button>
+        <Link
+          href="/builder"
+          className="w-full sm:w-56 px-8 py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-xl shadow-teal-500/20"
+        >
+          Start Designing
+          <ChevronRight size={20} />
         </Link>
-        <Link href="/how-it-works" className="w-full sm:w-56">
-          <button className="cursor-pointer w-full px-8 py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-extrabold rounded-2xl border border-white/5 transition-all">
-            How it works
-          </button>
+        <Link
+          href="/how-it-works"
+          className="w-full sm:w-56 px-8 py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-extrabold rounded-2xl border border-white/5 transition-all text-center"
+        >
+          How it works
         </Link>
       </motion.div>
+
+      <motion.ul
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.45 }}
+        className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-zinc-500"
+      >
+        {["Free delivery & assembly", "Set up within 24 hours", "Cancel anytime"].map((perk) => (
+          <li key={perk} className="flex items-center gap-1.5">
+            <Check size={14} className="text-teal-500" /> {perk}
+          </li>
+        ))}
+      </motion.ul>
     </div>
   );
 };

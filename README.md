@@ -8,13 +8,14 @@ The project was designed with a **"Visual First"** approach. Instead of traditio
 
 - **Frontend**: Built with **Next.js 16 (App Router)** for a fast, interactive user interface. Tailwind CSS for modern styling.
 - **State Management**: Migrated from prop-drilling to **Zustand** to ensure a single source of truth for complex product selections and UI states.
-- **Visuals**: Leveraged **CSS 3D Transforms** (`perspective`, `rotateX/Y`) instead of heavy WebGL/Three.js to maintain lightning-fast load times while still providing a depth-filled, interactive mockup.
+- **Visuals**: A hand-built **SVG room scene** (fixed 1000×640 coordinate space) instead of heavy WebGL/Three.js. Every desk, chair, monitor and accessory variant has its own drawing, so swapping a product visibly changes the room while staying lightning-fast and crisp at any size.
 - **AI-Powered Consultation**: A unique **"Chat with AI"** feature powered by OpenRouter that acts as a personal workspace consultant, providing real-time product recommendations from the DeskLab catalog based on ergonomic needs and Bali lifestyle.
 
 ## ✨ Key Features
 
-- **Interactive 3D Visualizer**: Real-time CSS 3D preview of your workspace as you swap products (desktop version).
-- **Smart AI Assistant**: Floating chat interface that understands our product catalog and provides expert advice.
+- **Live Room Preview**: Real-time preview of your workspace on every screen size, with golden-hour/night lighting, hover-to-inspect, click-to-swap, and placeholders for empty slots.
+- **Flexible Rental Terms**: 1, 3, 6 or 12 month plans with automatic discounts shown throughout checkout.
+- **Smart AI Assistant**: Chat that knows the catalog *and* your current setup; recommended products appear as one-tap "Add" chips.
 - **Dummy Checkout Flow**: Interactive payment processing and live delivery status tracking for a complete end-to-end experience (UI only).
 
 ## 🛠️ Tech Choices

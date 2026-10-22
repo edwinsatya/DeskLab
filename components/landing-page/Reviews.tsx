@@ -2,16 +2,17 @@
 
 import { REVIEWS } from "@/constants";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 import Image from "next/image";
 
 export const Reviews = () => {
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      className="mt-20 w-full max-w-6xl"
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6 }}
+      className="mt-28 w-full max-w-6xl"
     >
       <div className="text-center mb-12">
         <h2 className="text-2xl lg:text-3xl font-bold italic mb-2">Trusted by the Bali nomad community.</h2>
@@ -23,14 +24,16 @@ export const Reviews = () => {
           <motion.div
             key={i}
             whileHover={{ y: -5 }}
-            className="p-8 rounded-4xl bg-zinc-900/40 border border-white/5 flex flex-col gap-6 relative group transition-all hover:bg-zinc-900/60"
+            className="p-8 rounded-4xl bg-zinc-900/40 border border-white/5 flex flex-col gap-6 relative group transition-colors hover:bg-zinc-900/60 text-left"
           >
+            <Quote size={28} className="absolute right-7 top-7 text-white/5" />
             <div className="flex items-center gap-4">
               <div className="relative w-12 h-12 rounded-full overflow-hidden border border-teal-500/30">
-                <Image 
-                  src={review.avatar} 
-                  alt={review.name} 
+                <Image
+                  src={review.avatar}
+                  alt={review.name}
                   fill
+                  sizes="48px"
                   className="object-cover"
                 />
               </div>
@@ -39,15 +42,15 @@ export const Reviews = () => {
                 <p className="text-[10px] text-teal-500 font-bold uppercase tracking-wider">{review.role} • {review.location}</p>
               </div>
             </div>
-            <p className="text-zinc-400 text-sm leading-relaxed italic">&quot;{review.content}&quot;</p>
-            <div className="flex gap-1">
+            <div className="flex gap-0.5" aria-label="5 out of 5 stars">
               {[1, 2, 3, 4, 5].map(star => (
-                <Sparkles key={star} size={12} className="text-teal-500" />
+                <Star key={star} size={14} className="fill-teal-500 text-teal-500" />
               ))}
             </div>
+            <p className="text-zinc-300 text-sm leading-relaxed">&ldquo;{review.content}&rdquo;</p>
           </motion.div>
         ))}
       </div>
-    </motion.div>
+    </motion.section>
   );
 };

@@ -1,19 +1,32 @@
 "use client";
 
-import { useStore } from "@/store/useStore";
+import { CATEGORIES, RENTAL_TERMS } from "@/constants";
+import { formatPrice, getPricing, useStore } from "@/store/useStore";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, CalendarDays, ShieldCheck, Truck } from "lucide-react";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 import { DeliveryStatus } from "./DeliveryStatus";
 import { PaymentProcessing } from "./PaymentProcessing";
+import { WorkspaceScene } from "./scene/WorkspaceScene";
 
 export const SuccessView = () => {
-  const { selections, getTotalPrice, setIsRented, resetStore } = useStore();
-  const totalPrice = getTotalPrice();
+  const selections = useStore((s) => s.selections);
+  const rentalMonths = useStore((s) => s.rentalMonths);
+  const sceneMode = useStore((s) => s.sceneMode);
+  const setRentalMonths = useStore((s) => s.setRentalMonths);
+  const setIsRented = useStore((s) => s.setIsRented);
+  const resetStore = useStore((s) => s.resetStore);
+  const pricing = getPricing(selections, rentalMonths);
   const [view, setView] = useState<"summary" | "payment" | "delivery">("summary");
+  const handlePaid = useCallback(() => setView("delivery"), []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [view]);
 
   if (view === "payment") {
-    return <PaymentProcessing onSuccess={() => setView("delivery")} />;
+    return <PaymentProcessing onSuccess={handlePaid} />;
   }
 
   if (view === "delivery") {
@@ -22,46 +35,110 @@ export const SuccessView = () => {
 
   return (
     <div className="min-h-screen bg-[#0F0F10] text-white flex items-center justify-center p-4 lg:p-8">
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="max-w-md w-full bg-zinc-900 border border-teal-500/30 p-8 lg:p-12 rounded-4xl lg:rounded-[40px] text-center flex flex-col gap-6 shadow-2xl shadow-teal-500/10"
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-5xl grid md:grid-cols-[1.15fr_1fr] overflow-hidden rounded-4xl border border-white/10 bg-zinc-900 shadow-2xl shadow-black/50"
       >
-        <div className="w-20 h-20 lg:w-24 lg:h-24 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4">
-          <Check size={40} className="text-black lg:w-12 lg:h-12" strokeWidth={3} />
-        </div>
-        <h1 className="text-3xl lg:text-4xl font-bold italic tracking-tight">Bali awaits.</h1>
-        <p className="text-zinc-400 text-sm lg:text-base leading-relaxed">Your dream setup is being prepped. Our team will reach out to schedule your delivery in the next 24 hours.</p>
-        
-        <div className="bg-zinc-800/50 p-4 lg:p-5 rounded-2xl text-left border border-white/5">
-          <p className="text-[10px] text-zinc-500 uppercase font-bold mb-3 tracking-widest">Order Summary</p>
-          {Object.values(selections).map(item => item && (
-            <div key={item.id} className="text-xs lg:text-sm py-1.5 flex justify-between">
-              <span className="text-zinc-300">{item.name}</span>
-              <span className="text-teal-500 font-medium">${item.price}</span>
-            </div>
-          ))}
-          <div className="h-px bg-white/5 my-3" />
-          <div className="flex justify-between font-bold text-sm lg:text-base">
-            <span>Total / mo</span>
-            <span className="text-teal-500">${totalPrice}</span>
+        {/* Preview */}
+        <div className="relative min-h-56 md:min-h-full overflow-hidden bg-[#101013] flex items-center">
+          <div className="scene-stage relative md:scale-[1.2] lg:scale-[1.25]">
+            <WorkspaceScene selections={selections} mode={sceneMode} className="absolute inset-0 h-full w-full" />
           </div>
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.6)_100%)]" />
+          <button
+            onClick={() => setIsRented(false)}
+            className="cursor-pointer absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-3 py-1.5 text-xs font-semibold text-zinc-200 backdrop-blur-md hover:text-white transition-colors"
+          >
+            <ArrowLeft size={14} /> Edit setup
+          </button>
         </div>
 
-        <div className="flex flex-col gap-3">
-          <button 
-            onClick={() => setView("payment")}
-            className="w-full py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl transition-all active:scale-[0.98] shadow-lg shadow-teal-500/10 text-sm lg:text-base capitalize tracking-wider cursor-pointer"
-          >
-            Confirm & Pay Setup
-          </button>
-          
-          <button 
-            onClick={() => setIsRented(false)}
-            className="text-zinc-500 hover:text-white transition-colors text-xs lg:text-sm font-medium cursor-pointer"
-          >
-            Back to Editor
-          </button>
+        {/* Order summary */}
+        <div className="p-6 lg:p-8 flex flex-col gap-6">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-widest text-teal-400">Almost there</p>
+            <h1 className="mt-1 text-3xl font-bold italic tracking-tight">Review your setup.</h1>
+            <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+              Delivered, assembled and insured anywhere from Canggu to Ubud within 24 hours.
+            </p>
+          </div>
+
+          <ul className="flex flex-col gap-2">
+            {CATEGORIES.map(({ id, label }) => {
+              const item = selections[id];
+              if (!item) return null;
+              return (
+                <li key={id} className="flex items-center gap-3">
+                  <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl bg-zinc-800">
+                    <Image src={item.image} alt="" fill sizes="44px" className="object-cover" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[9px] font-bold uppercase tracking-widest text-zinc-500">{label}</span>
+                    <span className="block truncate text-sm font-semibold text-zinc-200">{item.name}</span>
+                  </span>
+                  <span className="text-sm font-medium text-zinc-400 tabular-nums">{formatPrice(item.price)}/mo</span>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="flex flex-col gap-2">
+            <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+              <CalendarDays size={12} /> Rental term
+            </span>
+            <div className="grid grid-cols-4 gap-1 rounded-xl border border-white/5 bg-black/30 p-1">
+              {RENTAL_TERMS.map((term) => (
+                <button
+                  key={term.months}
+                  onClick={() => setRentalMonths(term.months)}
+                  className={`cursor-pointer rounded-lg py-1.5 text-xs font-bold transition-colors ${
+                    term.months === rentalMonths ? "bg-teal-400 text-black" : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  {term.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-white/5 bg-zinc-800/40 p-4 flex flex-col gap-2 text-sm">
+            <div className="flex justify-between text-zinc-400">
+              <span>Subtotal</span>
+              <span className="tabular-nums">{formatPrice(pricing.subtotal)}/mo</span>
+            </div>
+            {pricing.discount > 0 && (
+              <div className="flex justify-between text-teal-400">
+                <span>{rentalMonths}-month discount</span>
+                <span className="tabular-nums">−{formatPrice(pricing.discount)}/mo</span>
+              </div>
+            )}
+            <div className="flex justify-between text-zinc-400">
+              <span>Delivery & assembly</span>
+              <span>Free</span>
+            </div>
+            <div className="h-px bg-white/5 my-1" />
+            <div className="flex items-end justify-between">
+              <span className="font-semibold">Monthly total</span>
+              <span className="text-2xl font-bold text-teal-400 tabular-nums">{formatPrice(pricing.monthly)}</span>
+            </div>
+            <p className="text-right text-[11px] text-zinc-500">
+              {formatPrice(pricing.total)} billed over {rentalMonths} {rentalMonths === 1 ? "month" : "months"}
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={() => setView("payment")}
+              className="w-full py-4 bg-teal-500 hover:bg-teal-400 text-black font-extrabold rounded-2xl transition-all active:scale-[0.98] shadow-lg shadow-teal-500/10 cursor-pointer"
+            >
+              Confirm & pay {formatPrice(pricing.monthly)}
+            </button>
+            <div className="flex items-center justify-center gap-4 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+              <span className="flex items-center gap-1"><Truck size={12} /> Free delivery</span>
+              <span className="flex items-center gap-1"><ShieldCheck size={12} /> Shiny insurance</span>
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>
